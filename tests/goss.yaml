@@ -1,0 +1,27 @@
+port:
+  tcp:8080:
+    listening: true
+    ip:
+    - 0.0.0.0
+
+command:
+  php -m|grep -e ^xml:
+    exit-status: 0
+    stdout: [xml]
+    stderr: []
+
+http:
+  http://localhost:8080/admin:
+    status: 200
+    allow-insecure: false
+    no-follow-redirects: false
+    timeout: 1500
+    body:
+      - Add a new repository
+  http://localhost:8080:
+    status: 200
+    allow-insecure: false
+    no-follow-redirects: false
+    timeout: 1500
+    body:
+      - Composer Repository currently not available
